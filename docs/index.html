@@ -13,5 +13,43 @@
     <p class="tagline">i might be doing updates or sleeping lol. come back soon. i am very sorry for the inconvienince.</p>
     <footer>&copy; 2025 fonseware. all rights reserved.</footer>
   </div>
+
+<script>
+  const statusText = document.createElement('p');
+  statusText.style.marginTop = '2em';
+  statusText.style.fontSize = '1rem';
+  statusText.style.color = '#aaa';
+  statusText.textContent = 'checking if fonseware.com is back...';
+  document.querySelector('.container').appendChild(statusText);
+
+  async function checkSite() {
+    try {
+      const res = await fetch("https://fonseware.com/ping.txt", { cache: "no-store" });
+      const text = await res.text();
+      if (res.ok && text.trim() === "pong") {
+        statusText.textContent = '✅ fonseware.com is back online! you can visit it now.';
+        statusText.style.color = '#0f0';
+
+        // optional button
+        const btn = document.createElement('a');
+        btn.href = 'https://fonseware.com';
+        btn.textContent = 'Go to fonseware.com →';
+        btn.style.display = 'inline-block';
+        btn.style.marginTop = '1em';
+        btn.style.color = '#0ff';
+        btn.style.textDecoration = 'underline';
+        document.querySelector('.container').appendChild(btn);
+      } else {
+        throw new Error("pong not received");
+      }
+    } catch (err) {
+      statusText.textContent = '❌ still offline. check back later!';
+      statusText.style.color = '#f00';
+    }
+  }
+
+  checkSite();
+</script>
+
 </body>
 </html>
