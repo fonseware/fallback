@@ -28,7 +28,7 @@
       const text = await res.text();
       if (res.ok && text.trim() === "pong") {
         statusText.textContent = '✅ fonseware.com is back online! you can visit it now.';
-        statusText.style.color = '#0f0';
+        statusText.style.color = 'Green';
 
         // optional button
         const btn = document.createElement('a');
@@ -36,7 +36,7 @@
         btn.textContent = 'Go to fonseware.com →';
         btn.style.display = 'inline-block';
         btn.style.marginTop = '1em';
-        btn.style.color = '#0ff';
+        btn.style.color = 'Blue';
         btn.style.textDecoration = 'underline';
         document.querySelector('.container').appendChild(btn);
       } else {
@@ -44,7 +44,7 @@
       }
     } catch (err) {
       statusText.textContent = '❌ still offline. check back later!';
-      statusText.style.color = '#f00';
+      statusText.style.color = 'Red';
     }
   }
 
