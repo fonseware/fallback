@@ -7,7 +7,7 @@
 body {
   background-color: #f4f4f4;
   color: #333;
-  font-family: 'Geist', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Geist", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,26 +50,74 @@ footer {
 }
 
 @font-face {
-    font-family: 'Geist';
-    src: url('../res/geist-variablefont_wght-webfont.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Geist";
+  src: url("../res/geist-variablefont_wght-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
-    font-family: 'Geist-Mono';
-    src: url('../res/geistmono-variablefont_wght-webfont') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Geist-Mono";
+  src: url("../res/geistmono-variablefont_wght-webfont") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
-    font-family: 'InstrumentSerif-Regular';
-    src: url('../res/instrumentserif-regular-webfont.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "InstrumentSerif-Regular";
+  src: url("../res/instrumentserif-regular-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
-    font-family: 'InstrumentSerif-Italic';
-    src: url('../res/instrumentserif-italic-webfont.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "InstrumentSerif-Italic";
+  src: url("../res/instrumentserif-italic-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.incident-list button {
+  background-color: #ffffff;
+  color: #007acc;
+  border: 2px solid #007acc;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: "Geist", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 10px auto;
+  display: block;
+}
+
+.incident-list button:hover {
+  background-color: #007acc;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  font-family: "Geist", sans-serif;
+}
+
+.incident-button {
+  background-color: #ffffff;
+  color: #007acc;
+  border: 2px solid #007acc;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: "Geist", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 10px auto;
+  display: block;
+}
+
+.incident-button:hover {
+  background-color: #007acc;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
