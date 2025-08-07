@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fonseware.com is offline</title>
-  <link rel="stylesheet" href="res/styles.css" />
-</head>
-<body>
-  <div class="container">
-    <h1 style="font-family: 'InstrumentSerif-Regular';">fonseware.com is offline rn.</h1>
-    <br/>
-    <p class="tagline">i might be doing updates or sleeping lol. come back soon. i am very sorry for the inconvienince.</p>
-    <footer>&copy; 2025 fonseware. all rights reserved. <a href="status.html">check status</a></footer>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fonseware.com is offline</title>
+    <link rel="stylesheet" href="res/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="font-family: 'InstrumentSerif-Regular'">
+        fonseware.com is offline rn.
+      </h1>
+      <br />
+      <p class="tagline">
+        i might be doing updates or sleeping lol. come back soon. i am very
+        sorry for the inconvenience. you can also
+        <a href="status.html" style="color: forestgreen">check status</a> here.
+      </p>
+      <footer>&copy; 2025 fonseware. all rights reserved.</footer>
+    </div>
 
-<script>
-  const statusText = document.createElement('p');
-  statusText.style.marginTop = '2em';
-  statusText.style.fontSize = '1rem';
-  statusText.style.color = '#aaa';
-  statusText.textContent = 'checking if fonseware.com is back...';
-  document.querySelector('.container').appendChild(statusText);
+    <script>
+      const statusText = document.createElement("p");
+      statusText.style.marginTop = "2em";
+      statusText.style.fontSize = "1rem";
+      statusText.style.color = "#aaa";
+      statusText.textContent = "checking if fonseware.com is back...";
+      document.querySelector(".container").appendChild(statusText);
 
-  async function checkSite() {
-    try {
-      const res = await fetch("https://fonseware.com/ping.txt", { cache: "no-store" });
-      const text = await res.text();
-      if (res.ok && text.trim() === "pong") {
-        statusText.textContent = '✅ fonseware.com is back online! you can visit it now.';
-        statusText.style.color = 'Green';
+      async function checkSite() {
+        try {
+          const res = await fetch("https://fonseware.com/ping.txt", {
+            cache: "no-store",
+          });
+          const text = await res.text();
+          if (res.ok && text.trim() === "pong") {
+            statusText.textContent =
+              "✅ fonseware.com is back online! you can visit it now.";
+            statusText.style.color = "Green";
 
-        // optional button
-        const btn = document.createElement('a');
-        btn.href = 'https://fonseware.com';
-        btn.textContent = 'Go to fonseware.com →';
-        btn.style.display = 'inline-block';
-        btn.style.marginTop = '1em';
-        btn.style.color = 'Blue';
-        btn.style.textDecoration = 'underline';
-        document.querySelector('.container').appendChild(btn);
-      } else {
-        throw new Error("pong not received");
+            // optional button
+            const btn = document.createElement("a");
+            btn.href = "https://fonseware.com";
+            btn.textContent = "Go to fonseware.com →";
+            btn.style.display = "inline-block";
+            btn.style.marginTop = "1em";
+            btn.style.color = "Blue";
+            btn.style.textDecoration = "underline";
+            document.querySelector(".container").appendChild(btn);
+          } else {
+            throw new Error("pong not received");
+          }
+        } catch (err) {
+          statusText.textContent = "❌ still offline. check back later!";
+          statusText.style.color = "Red";
+        }
       }
-    } catch (err) {
-      statusText.textContent = '❌ still offline. check back later!';
-      statusText.style.color = 'Red';
-    }
-  }
 
-  checkSite();
-</script>
-
-</body>
+      checkSite();
+    </script>
+  </body>
 </html>
