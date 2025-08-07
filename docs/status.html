@@ -13,16 +13,15 @@
     <p class="tagline">keeping you updated on server availability</p>
 
     <div id="status" class="status">loading status...</div>
-    <div id="timestamp" class="timestamp"></div>
-
-    </br>
-    <h2 style="margin-top: 2rem;">📜 past downtime incidents</h2>
-    </br>
+    <div id="timestamp" class="timestamp" style="margin-bottom: 10px;"></div>
+    <p class='timestamp'>status auto-refreshes every 5 seconds.</p> 
+  </br>
+    <h2 style="margin-top: 2rem;">📜 past downtime incidents.</h2>
+</br>
     <div id="incident-list" class="incident-list"></div>
     <footer style="margin-top: 3rem;">
-      status auto-refreshes every 5 seconds 
     </br></br>
-      &copy; 2025 fonseware
+      &copy; 2025 fonseware. all rights reserved.
     </footer>
   </div>
 
@@ -47,17 +46,17 @@
         const now = new Date().toLocaleTimeString();
 
         if (text.trim().toLowerCase() === 'pong') {
-          statusEl.textContent = '🟢 fonseware.com is ONLINE';
+          statusEl.textContent = '🟢 fonseware.com is online';
           statusEl.style.color = 'green';
         } else {
-          statusEl.textContent = '🔴 fonseware.com is UNREACHABLE (unexpected response)';
+          statusEl.textContent = '🔴 fonseware.com is unreachable (unexpected response)';
           statusEl.style.color = 'red';
         }
 
         timestampEl.textContent = `last checked at: ${now}`;
       } catch (err) {
         const now = new Date().toLocaleTimeString();
-        statusEl.textContent = '🔴 fonseware.com is OFFLINE (cannot connect)';
+        statusEl.textContent = '🔴 fonseware.com is offline (cannot connect)';
         statusEl.style.color = 'red';
         timestampEl.textContent = `last checked at: ${now}`;
       }
