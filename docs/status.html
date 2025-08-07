@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fonseware Server Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="res/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 style="font-family: 'InstrumentSerif-Regular';">fonseware.com status</h1>
+    <p class="tagline">keeping you updated on server availability</p>
+
+    <div id="status" class="status">loading status...</div>
+    <div id="timestamp" class="timestamp"></div>
+
+    <footer>
+      status auto-refreshes every 5 seconds<br>
+      &copy; 2025 fonseware
+    </footer>
+  </div>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const timestampEl = document.getElementById('timestamp');
+
+    async function checkStatus() {
+      try {
+        const res = await fetch('https://fonseware.com/ping.txt', { cache: 'no-store' });
+        const text = await res.text();
+        const now = new Date().toLocaleTimeString();
+
+        if (text.trim().toLowerCase() === 'pong') {
+          statusEl.textContent = '🟢 fonseware.com is ONLINE';
+          statusEl.style.color = 'green';
+        } else {
+          statusEl.textContent = '🔴 fonseware.com is UNREACHABLE (unexpected response)';
+          statusEl.style.color = 'red';
+        }
+
+        timestampEl.textContent = `Last checked at: ${now}`;
+      } catch (err) {
+        const now = new Date().toLocaleTimeString();
+        statusEl.textContent = '🔴 fonseware.com is OFFLINE (cannot connect)';
+        statusEl.style.color = 'red';
+        timestampEl.textContent = `Last checked at: ${now}`;
+      }
+    }
+
+    checkStatus();
+    setInterval(checkStatus, 5000);
+  </script>
+</body>
+</html>
