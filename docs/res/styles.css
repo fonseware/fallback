@@ -5,8 +5,8 @@
 }
 
 body {
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #27184F;
+  color: #ffffff;
   font-family: "Geist", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@ h1 {
 .tagline {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  color: #555;
+  color: #ffffff;
 }
 
 .status {
@@ -40,12 +40,12 @@ h1 {
 
 footer {
   font-size: 0.9rem;
-  color: #888;
+  color: #ffffff;
 }
 
 .timestamp {
   font-size: 0.9rem;
-  color: #777;
+  color: #ffffff;
   margin-bottom: 30px;
 }
 
