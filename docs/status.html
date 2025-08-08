@@ -1,35 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fonseware Server Status</title>
+  <meta charset="utf-8">
+  <title>fonseware server status</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="res/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-      <link rel="icon" type="image/x-icon" href="res/favicon.png">
+  <link rel="icon" type="image/x-icon" href="res/favicon.png">
 </head>
 <body>
   <div class="container" id="main-view">
-    <center><img src="res/logo.png" alt="logo" width="500"></center>
-    <h1 style="font-family: 'InstrumentSerif-Regular';">fonseware.com status</h1>
+    <img src="res/logo.png" width="500" alt="logo">
+    <h1 style="font-family: 'instrumentserif-regular';">fonseware.com status</h1>
     <p class="tagline">keeping you updated on server availability</p>
 
     <div id="status" class="status">loading status...</div>
-    <div id="timestamp" class="timestamp" style="margin-bottom: 10px;"></div>
-    <p class='timestamp'>status auto-refreshes every 5 seconds.</p> 
-  </br>
-    <h2 style="margin-top: 2rem;">📜 past downtime incidents.</h2>
-</br>
+    <div id="timestamp" class="timestamp"></div>
+    <p class="timestamp">status auto-refreshes every 5 seconds.</p>
+
+    <h2>📜 past downtime incidents.</h2>
     <div id="incident-list" class="incident-list"></div>
-    <footer style="margin-top: 3rem;">
-    </br></br>
-      &copy; 2025 fonseware. all rights reserved. <a href="https://www.fonseware.com/" style="color: white">go to fonseware,com</a>.
+    <footer>
+      &copy; 2025 fonseware. all rights reserved. <a href="https://www.fonseware.com/">go to fonseware.com</a>.
     </footer>
   </div>
 
   <!-- rendered markdown view -->
   <div class="container" id="incident-view" style="display: none;">
-    <button class="incident-button" onclick="goBack()" style="margin-bottom: 1rem;">&larr; back</button>
+    <button class="incident-button" onclick="goBack()">&larr; back</button>
     <div id="incident-content" class="incident-content"></div>
   </div>
 
@@ -81,8 +79,6 @@
           const btn = document.createElement('button');
           btn.textContent = file.replace('.md', '');
           btn.onclick = () => loadIncident(file);
-          btn.style.display = "block";
-          btn.style.margin = "10px auto";
           incidentListEl.appendChild(btn);
         });
       } catch (err) {

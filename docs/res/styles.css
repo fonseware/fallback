@@ -5,50 +5,110 @@
 }
 
 body {
-  background-color: #27184F;
+  background-color: #27184f;
   color: #ffffff;
-  font-family: "Geist", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "geist", tahoma, geneva, verdana, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
+  line-height: 1.6;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 800px;
+  width: 95%;
+  margin: 0 auto;
   padding: 20px;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 10px;
 }
 
 .tagline {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
   margin-bottom: 20px;
   color: #ffffff;
 }
 
 .status {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   font-weight: bold;
   color: #007acc;
   margin-bottom: 40px;
 }
 
 footer {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   color: #ffffff;
+  margin-top: 20px;
 }
 
 .timestamp {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   color: #ffffff;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
+.incident-list button,
+.incident-button {
+  background-color: #ffffff;
+  color: #007acc;
+  border: 2px solid #007acc;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-family: "geist", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 10px auto;
+  display: block;
+  width: fit-content;
+}
+
+.incident-list button:hover,
+.incident-button:hover {
+  background-color: #007acc;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #007acc;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .tagline,
+  .status,
+  .timestamp {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  button {
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+  }
+}
 @font-face {
   font-family: "Geist";
   src: url("../res/geist-variablefont_wght-webfont.woff2") format("woff2");
@@ -72,52 +132,4 @@ footer {
   src: url("../res/instrumentserif-italic-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
-
-.incident-list button {
-  background-color: #ffffff;
-  color: #007acc;
-  border: 2px solid #007acc;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-family: "Geist", sans-serif;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin: 10px auto;
-  display: block;
-}
-
-.incident-list button:hover {
-  background-color: #007acc;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-button {
-  font-family: "Geist", sans-serif;
-}
-
-.incident-button {
-  background-color: #ffffff;
-  color: #007acc;
-  border: 2px solid #007acc;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-family: "Geist", sans-serif;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin: 10px auto;
-  display: block;
-}
-
-.incident-button:hover {
-  background-color: #007acc;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
