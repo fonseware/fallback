@@ -1,185 +1,194 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: #27184f;
-  color: #ffffff;
-  font-family: "geist", tahoma, geneva, verdana, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  line-height: 1.6;
+    background-color: #27184f;
+    color: #ffffff;
+    font-family: "geist", tahoma, geneva, verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    line-height: 1.6;
 }
 
 .container {
-  max-width: 800px;
-  width: 95%;
-  margin: 0 auto;
-  padding: 20px;
+    max-width: 800px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: 10px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 10px;
+}
+
+.topics {
+    font-size: clamp(1rem, 3vw, 1.2rem);
 }
 
 .tagline {
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  margin-bottom: 20px;
-  color: #ffffff;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .status {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
-  font-weight: bold;
-  color: #007acc;
-  margin-bottom: 40px;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: bold;
+    color: #007acc;
+    margin-bottom: 40px;
 }
 
 footer {
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  color: #ffffff;
-  margin-top: 20px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    color: #ffffff;
+    margin-top: 20px;
 }
 
 .timestamp {
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  color: #ffffff;
-  margin-bottom: 20px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    color: #ffffff;
+    margin-bottom: 20px;
 }
 
 .incident-list button,
 .incident-button {
-  background-color: #27184f;
-  color: #ffffff;
-  border: 2px solid #130e23;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  font-family: "geist", sans-serif;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin: 10px auto;
-  display: block;
-  width: fit-content;
+    background-color: #27184f;
+    color: #ffffff;
+    border: 2px solid #130e23;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-family: "geist", sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 10px auto;
+    display: block;
+    width: fit-content;
 }
 
 .incident-list button:hover,
 .incident-button:hover {
-  background-color: #1d065c;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: #1d065c;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 a {
-  color: #007acc;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
+    color: #007acc;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 @media (max-width: 768px) {
-  h1 {
-    font-size: clamp(1.5rem, 5vw, 2rem);
-  }
+    h1 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
 
-  .tagline,
-  .status,
-  .timestamp {
-    font-size: clamp(0.9rem, 3vw, 1rem);
-  }
+    .tagline,
+    .status,
+    .timestamp {
+        font-size: clamp(0.9rem, 3vw, 1rem);
+    }
 
-  button {
-    font-size: clamp(0.8rem, 3vw, 0.9rem);
-  }
+    button {
+        font-size: clamp(0.8rem, 3vw, 0.9rem);
+    }
 }
+
 @font-face {
-  font-family: "Geist";
-  src: url("../res/geist-variablefont_wght-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Geist";
+    src: url("../res/geist-variablefont_wght-webfont.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
 }
+
 @font-face {
-  font-family: "Geist-Mono";
-  src: url("../res/geistmono-variablefont_wght-webfont") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Geist-Mono";
+    src: url("../res/geistmono-variablefont_wght-webfont") format("woff2");
+    font-weight: normal;
+    font-style: normal;
 }
+
 @font-face {
-  font-family: "InstrumentSerif-Regular";
-  src: url("../res/instrumentserif-regular-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "InstrumentSerif-Regular";
+    src: url("../res/instrumentserif-regular-webfont.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
 }
+
 @font-face {
-  font-family: "InstrumentSerif-Italic";
-  src: url("../res/instrumentserif-italic-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "InstrumentSerif-Italic";
+    src: url("../res/instrumentserif-italic-webfont.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
 }
+
 /* Card Styling */
 .card {
-  background-color: #31245e;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    background-color: #31245e;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .card h2 {
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
-  margin-bottom: 10px;
-  color: #ffffff;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 10px;
+    color: #ffffff;
 }
 
 .card p {
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  color: #ffffff;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: #ffffff;
 }
 
 .card .status {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
-  font-weight: bold;
-  margin-bottom: 10px;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .card .timestamp {
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  margin-bottom: 10px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    margin-bottom: 10px;
 }
 
 .card .incident-list button {
-  width: 100%;
-  margin: 5px 0;
-  display: block;
+    width: 100%;
+    margin: 5px 0;
+    display: block;
 }
 
 @media (max-width: 768px) {
-  .card {
-    padding: 15px;
-  }
+    .card {
+        padding: 15px;
+    }
 
-  .card h2 {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-  }
+    .card h2 {
+        font-size: clamp(1rem, 3vw, 1.2rem);
+    }
 
-  .card p {
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
-  }
+    .card p {
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+    }
 }
