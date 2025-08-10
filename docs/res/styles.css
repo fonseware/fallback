@@ -55,9 +55,9 @@ footer {
 
 .incident-list button,
 .incident-button {
-  background-color: #ffffff;
-  color: #007acc;
-  border: 2px solid #007acc;
+  background-color: #27184f;
+  color: #ffffff;
+  border: 2px solid #130e23;
   border-radius: 8px;
   padding: 10px 20px;
   font-size: clamp(0.9rem, 2vw, 1rem);
@@ -72,7 +72,7 @@ footer {
 
 .incident-list button:hover,
 .incident-button:hover {
-  background-color: #007acc;
+  background-color: #1d065c;
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -132,4 +132,54 @@ a:hover {
   src: url("../res/instrumentserif-italic-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
+}
+/* Card Styling */
+.card {
+  background-color: #31245e;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.card p {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: #ffffff;
+}
+
+.card .status {
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card .timestamp {
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  margin-bottom: 10px;
+}
+
+.card .incident-list button {
+  width: 100%;
+  margin: 5px 0;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+  }
+
+  .card h2 {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+
+  .card p {
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+  }
 }

@@ -1,111 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>fonseware server status</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="res/styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <link rel="icon" type="image/x-icon" href="res/favicon.png">
-</head>
-<body>
-  <div class="container" id="main-view">
-    <img src="res/logo.png" width="500" alt="logo">
-    <h1 style="font-family: 'instrumentserif-regular';">fonseware.com status</h1>
-    <p class="tagline">keeping you updated on server availability</p>
+  <head>
+    <meta charset="utf-8" />
+    <title>fonseware server status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="res/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="res/favicon.png" />
+  </head>
+  <body>
+    <div class="container" id="main-view">
+      <img src="res/logo.png" alt="logo" />
+      <h1
+        style="
+          font-family: 'instrumentserif-regular';
+          margin-bottom: -10px;
+          margin-top: -80px;
+          font-size: 40px;
+        "
+      >
+        fonseware.com status
+      </h1>
 
-    <div id="status" class="status">loading status...</div>
-    <div id="timestamp" class="timestamp"></div>
-    <p class="timestamp">status auto-refreshes every 5 seconds.</p>
+      <!-- Status Card -->
+      <div class="card">
+        <div id="status" class="status">loading status...</div>
+        <div id="timestamp" class="timestamp"></div>
+        <p class="timestamp">status auto-refreshes every 5 seconds.</p>
+      </div>
 
-    <h2>📜 past downtime incidents.</h2>
-    <div id="incident-list" class="incident-list"></div>
-    <footer>
-      &copy; 2025 fonseware. all rights reserved. <a href="https://www.fonseware.com/">go to fonseware.com</a>.
-    </footer>
-  </div>
+      <!-- Past Incidents Card -->
+      <div class="card">
+        <h2>📜 past downtime incidents</h2>
+        <div id="incident-list" class="incident-list"></div>
+      </div>
 
-  <!-- rendered markdown view -->
-  <div class="container" id="incident-view" style="display: none;">
-    <button class="incident-button" onclick="goBack()">&larr; back</button>
-    <div id="incident-content" class="incident-content"></div>
-  </div>
+      <footer>
+        &copy; 2025 fonseware. all rights reserved.
+        <a href="https://www.fonseware.com/">go to fonseware.com</a>.
+      </footer>
+    </div>
 
-  <script>
-    const statusEl = document.getElementById('status');
-    const timestampEl = document.getElementById('timestamp');
-    const incidentListEl = document.getElementById('incident-list');
-    const mainView = document.getElementById('main-view');
-    const incidentView = document.getElementById('incident-view');
-    const incidentContent = document.getElementById('incident-content');
+    <!-- Rendered Markdown View -->
+    <div class="container" id="incident-view" style="display: none">
+      <button class="incident-button" onclick="goBack()">&larr; back</button>
+      <div id="incident-content" class="incident-content"></div>
+    </div>
 
-    async function checkStatus() {
-      try {
-        const res = await fetch('https://fonseware.com/ping.txt', { cache: 'no-store' });
-        const text = await res.text();
-        const now = new Date().toLocaleTimeString();
+    <script>
+      const statusEl = document.getElementById("status");
+      const timestampEl = document.getElementById("timestamp");
+      const incidentListEl = document.getElementById("incident-list");
+      const mainView = document.getElementById("main-view");
+      const incidentView = document.getElementById("incident-view");
+      const incidentContent = document.getElementById("incident-content");
 
-        if (text.trim().toLowerCase() === 'pong') {
-          statusEl.textContent = '🟢 fonseware.com is online';
-          statusEl.style.color = 'green';
-        } else {
-          statusEl.textContent = '🔴 fonseware.com is unreachable (unexpected response)';
-          statusEl.style.color = 'red';
+      async function checkStatus() {
+        try {
+          const res = await fetch("https://fonseware.com/ping.txt", {
+            cache: "no-store",
+          });
+          const text = await res.text();
+          const now = new Date().toLocaleTimeString();
+
+          if (text.trim().toLowerCase() === "pong") {
+            statusEl.textContent = "🟢 fonseware.com is online";
+            statusEl.style.color = "green";
+          } else {
+            statusEl.textContent =
+              "🔴 fonseware.com is unreachable (unexpected response)";
+            statusEl.style.color = "red";
+          }
+
+          timestampEl.textContent = `last checked at: ${now}`;
+        } catch (err) {
+          const now = new Date().toLocaleTimeString();
+          statusEl.textContent = "🔴 fonseware.com is offline (cannot connect)";
+          statusEl.style.color = "red";
+          timestampEl.textContent = `last checked at: ${now}`;
         }
-
-        timestampEl.textContent = `last checked at: ${now}`;
-      } catch (err) {
-        const now = new Date().toLocaleTimeString();
-        statusEl.textContent = '🔴 fonseware.com is offline (cannot connect)';
-        statusEl.style.color = 'red';
-        timestampEl.textContent = `last checked at: ${now}`;
       }
-    }
 
-    checkStatus();
-    setInterval(checkStatus, 5000);
+      checkStatus();
+      setInterval(checkStatus, 5000);
 
-    async function loadIncidents() {
-      try {
-        const res = await fetch("events/index.json");
-        const files = await res.json();
+      async function loadIncidents() {
+        try {
+          const res = await fetch("events/index.json");
+          const files = await res.json();
 
-        if (files.length === 0) {
-          incidentListEl.textContent = "there are no past incidents";
-          return;
+          if (files.length === 0) {
+            incidentListEl.textContent = "there are no past incidents";
+            return;
+          }
+
+          files.forEach((file) => {
+            const btn = document.createElement("button");
+            btn.textContent = file.replace(".md", "");
+            btn.onclick = () => loadIncident(file);
+            incidentListEl.appendChild(btn);
+          });
+        } catch (err) {
+          incidentListEl.textContent = "error loading incident history";
         }
-
-        files.forEach(file => {
-          const btn = document.createElement('button');
-          btn.textContent = file.replace('.md', '');
-          btn.onclick = () => loadIncident(file);
-          incidentListEl.appendChild(btn);
-        });
-      } catch (err) {
-        incidentListEl.textContent = "error loading incident history";
       }
-    }
 
-    async function loadIncident(file) {
-      try {
-        const res = await fetch(`events/${file}`);
-        const md = await res.text();
-        const html = marked.parse(md);
+      async function loadIncident(file) {
+        try {
+          const res = await fetch(`events/${file}`);
+          const md = await res.text();
+          const html = marked.parse(md);
 
-        incidentContent.innerHTML = html;
-        mainView.style.display = "none";
-        incidentView.style.display = "block";
-      } catch (err) {
-        incidentContent.innerHTML = "<p style='color:red;'>failed to load incident</p>";
+          incidentContent.innerHTML = html;
+          mainView.style.display = "none";
+          incidentView.style.display = "block";
+        } catch (err) {
+          incidentContent.innerHTML =
+            "<p style='color:red;'>failed to load incident</p>";
+        }
       }
-    }
 
-    function goBack() {
-      incidentView.style.display = "none";
-      mainView.style.display = "block";
-    }
+      function goBack() {
+        incidentView.style.display = "none";
+        mainView.style.display = "block";
+      }
 
-    loadIncidents();
-  </script>
-</body>
+      loadIncidents();
+    </script>
+  </body>
 </html>
