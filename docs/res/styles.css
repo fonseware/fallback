@@ -297,6 +297,12 @@ a:hover {
 .skeleton a {
     color: transparent;
 }
+.img-wrapper img[loading="lazy"][data-broken] {
+    opacity: 1; /* Fallback for broken images */
+}
+.img-wrapper[data-broken]::before {
+    display: none; /* Stop pulse if image fails */
+}
 @keyframes pulse {
     0% {
         background-position: 200% 0;
