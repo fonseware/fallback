@@ -9,18 +9,24 @@
 </head>
 <body>
 <div class="container" id="main-view">
-    <img src="res/logo.png" alt="logo">
+    <div class="img-wrapper">
+        <img alt="logo" src="res/logo.png" loading="lazy" />
+    </div>
     <h1 style="font-family: 'InstrumentSerif-Italic',serif;">fonseware is offline rn.</h1>
+    <p class="tagline topics">
+        i might be doing updates or sleeping lol. come back at another time and i am very sorry for the
+        inconvenience caused.</p>
     <div class="card">
-
-        <p class="tagline" style="text-align: left; margin-bottom: -5px">
-            i might be doing updates or sleeping lol. come back at another time and i am very sorry for the
-            inconvenience caused. <br><br><strong style="font-family: 'InstrumentSerif-Regular',serif;" class="topics"> why am
+        <p class="tagline" style="text-align: left; margin-bottom: -5px"><strong
+                style="font-family: 'InstrumentSerif-Regular',serif;" class="topics"> why am
             i seeing this error?</strong><br> my website runs on a home-hosted webserver. sometimes it goes offline for
-            maintenance or when my computer needs a break.<br><br> you can also check my <a href="https://www.fonseware.com/status/">server status here</a>.
+            maintenance or when my computer needs a break.<br><br> you can also check my <a
+                    href="https://www.fonseware.com/status/">server status here</a>.
         </p>
     </div>
-    <footer class="tagline">&copy; 2025 fonseware. all rights reserved.</footer>
+    <footer class="tagline topics">&copy; 2025 fonseware. all rights reserved.</footer>
 </div>
+<script src="res/server-check.js"></script>
+<script src="res/lazyload.js"></script>
 </body>
 </html>

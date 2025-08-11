@@ -192,3 +192,41 @@ a:hover {
         font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
 }
+
+.img-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 600px;
+    width: 100%;
+    /* remove background: #eee; */
+    overflow: hidden;
+}
+
+.img-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+    animation: pulse 1.5s infinite;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 8px; /* optional rounded corners for nice vibe */
+}
+
+.img-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+    position: relative;
+    z-index: 2;
+    border-radius: 8px; /* keep consistent with wrapper */
+}
+
+.img-wrapper img.loaded {
+    opacity: 1;
+}
+.img-wrapper.loaded-wrapper::before {
+    display: none;
+}

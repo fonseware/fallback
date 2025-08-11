@@ -10,7 +10,9 @@
 </head>
 <body>
 <div class="container" id="main-view">
-    <img alt="logo" src="res/logo.png" width="600"/>
+    <div class="img-wrapper">
+        <img alt="logo" src="res/logo.png" loading="lazy" />
+    </div>
     <h1 style="font-family: 'InstrumentSerif-Italic',serif;">fonseware webserver status</h1>
     <p class="tagline topics">this is the status page for <a href="https://www.fonseware.com/">fonseware.com</a></p>
     <!-- Status Card -->
@@ -34,13 +36,15 @@
             my website runs on a home-hosted webserver. sometimes it goes offline for maintenance or when my computer
             needs a break.
             any unusual issues or interruptions while the server is running will be reported here.
-            normal planned downtime (like updates or restarts) might not be listed.
+            normal planned downtime (like updates or restarts) might not be listed. i’m actively investing in solutions
+            to maintain 99% server uptime and keep things running smoothly.
         </p>
     </div>
 
     <footer class="tagline topics">
         <p>&copy; 2025 fonseware. all rights reserved.</p>
-        <p style="font-size: 15px;">site hosted on <a href="https://pages.github.com/">GitHub Pages</a> and<a href="https://github.com/fonseware/fallback"> open
+        <p style="font-size: 15px;">site hosted on <a href="https://pages.github.com/">GitHub Pages</a> and<a
+                href="https://github.com/fonseware/fallback"> open
             source</a>, does not accept pull requests.</p>
     </footer>
 </div>
@@ -51,85 +55,7 @@
     <div class="incident-content" id="incident-content"></div>
 </div>
 
-<script>
-    const statusEl = document.getElementById("status");
-    const timestampEl = document.getElementById("timestamp");
-    const incidentListEl = document.getElementById("incident-list");
-    const mainView = document.getElementById("main-view");
-    const incidentView = document.getElementById("incident-view");
-    const incidentContent = document.getElementById("incident-content");
-
-    async function checkStatus() {
-        try {
-            const res = await fetch("https://www.fonseware.com/ping.txt", {
-                cache: "no-store",
-            });
-            const text = await res.text();
-            const now = new Date().toLocaleTimeString();
-
-            if (text.trim().toLowerCase() === "pong") {
-                statusEl.textContent = "🟢 all systems operational";
-                statusEl.style.color = "green";
-            } else {
-                statusEl.textContent =
-                    "🟠 partial outage (unexpected response)";
-                statusEl.style.color = "orange";
-            }
-
-            timestampEl.textContent = `last checked at: ${now}`;
-        } catch (err) {
-            const now = new Date().toLocaleTimeString();
-            statusEl.textContent = "🔴 major outage (cannot connect)";
-            statusEl.style.color = "red";
-            timestampEl.textContent = `last checked at: ${now}`;
-        }
-    }
-
-    checkStatus();
-    setInterval(checkStatus, 5000);
-
-    async function loadIncidents() {
-        try {
-            const res = await fetch("events/index.json");
-            const files = await res.json();
-
-            if (files.length === 0) {
-                incidentListEl.textContent = "there are no past downtime incidents";
-                return;
-            }
-
-            files.forEach((file) => {
-                const btn = document.createElement("button");
-                btn.textContent = file.replace(".md", "");
-                btn.onclick = () => loadIncident(file);
-                incidentListEl.appendChild(btn);
-            });
-        } catch (err) {
-            incidentListEl.textContent = "error loading incident history";
-        }
-    }
-
-    async function loadIncident(file) {
-        try {
-            const res = await fetch(`events/${file}`);
-            const md = await res.text();
-            const html = marked.parse(md);
-
-            incidentContent.innerHTML = html;
-            mainView.style.display = "none";
-            incidentView.style.display = "block";
-        } catch (err) {
-            incidentContent.innerHTML =
-                "<p style='color:red;'>failed to load incidents</p>";
-        }
-    }
-
-    function goBack() {
-        incidentView.style.display = "none";
-        mainView.style.display = "block";
-    }
-
-    loadIncidents();
-</script>
+<script src="res/server-check.js"></script>
+<script src="res/lazyload.js"></script>
 </body>
 </html>
