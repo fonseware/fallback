@@ -206,11 +206,12 @@ a:hover {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+    background: linear-gradient(90deg, #27184f 25%, #1d113b 50%, #27184f 75%);
+    background-size: 200% 100%;
     animation: pulse 1.5s infinite;
     pointer-events: none;
     z-index: 1;
-    border-radius: 8px; /* optional rounded corners for nice vibe */
+    border-radius: 8px;
 }
 
 .img-wrapper img {
@@ -227,6 +228,16 @@ a:hover {
 .img-wrapper img.loaded {
     opacity: 1;
 }
+
 .img-wrapper.loaded-wrapper::before {
     display: none;
+}
+
+@keyframes pulse {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
 }
