@@ -232,7 +232,71 @@ a:hover {
 .img-wrapper.loaded-wrapper::before {
     display: none;
 }
+/* Skeleton Loading Styles */
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    color: transparent !important; /* Hide real text */
+    background-color: #31245e; /* Match card bg for seamless look */
+    border-radius: 4px; /* Subtle rounding for text blocks */
+}
 
+.skeleton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #27184f 25%, #1d113b 50%, #27184f 75%);
+    background-size: 200% 100%;
+    animation: pulse 1.5s infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Specific adjustments for different elements */
+.skeleton h1, .skeleton h2 {
+    height: 2.5rem; /* Approximate height to mimic heading */
+    width: 80%; /* Shorter for realism */
+    margin: 0 auto 10px;
+}
+
+.skeleton p, .skeleton .tagline, .skeleton .topics {
+    height: 1.2rem; /* Line height */
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.skeleton p:last-child {
+    width: 60%; /* Vary widths for natural skeleton look */
+}
+
+.skeleton .card {
+    min-height: 100px; /* Ensure cards have space for placeholder */
+}
+
+.skeleton .status, .skeleton .timestamp {
+    height: 1.5rem;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.skeleton .incident-list {
+    height: 50px; /* Placeholder for list */
+}
+
+/* For the image wrapper (integrate with existing) */
+.img-wrapper.skeleton::before {
+    /* Already defined, but ensure it overrides if needed */
+}
+
+/* Transition when skeleton is removed */
+:not(.skeleton) {
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Ensure links and buttons don't get skeleton-ified unintentionally */
+.skeleton a {
+    color: transparent;
+}
 @keyframes pulse {
     0% {
         background-position: 200% 0;

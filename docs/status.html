@@ -10,25 +10,25 @@
 </head>
 <body>
 <div class="container" id="main-view">
-    <div class="img-wrapper">
+    <div class="img-wrapper skeleton">  <!-- Add skeleton here too, for consistency -->
         <img alt="logo" src="res/logo.png" loading="lazy" />
     </div>
     <h1 style="font-family: 'InstrumentSerif-Italic',serif;">fonseware webserver status</h1>
     <p class="tagline topics">this is the status page for <a href="https://www.fonseware.com/">fonseware.com</a></p>
     <!-- Status Card -->
-    <div class="card">
-        <div class="status" id="status">contacting server...</div>
-        <div class="timestamp" id="timestamp"></div>
+    <div class="card skeleton">
+        <div class="status skeleton" id="status">contacting server...</div>
+        <div class="timestamp skeleton" id="timestamp"></div>
         <p class="tagline" style="margin-bottom: -5px">status auto-refreshes every 5 seconds.</p>
     </div>
 
     <!-- Past Incidents Card -->
-    <div class="card">
+    <div class="card skeleton">
         <h2 class="topics tagline" style="font-family: 'InstrumentSerif-Regular',serif;">📜 past downtime incidents</h2>
         <div class="incident-list tagline" id="incident-list" style="margin-bottom: -5px"></div>
     </div>
 
-    <div class="card">
+    <div class="card skeleton">
         <h2 class="topics tagline" style="text-align: left; font-family:  'InstrumentSerif-Regular',serif;">
             what and why is this page here?
         </h2>
@@ -41,7 +41,7 @@
         </p>
     </div>
 
-    <footer class="tagline topics">
+    <footer class="tagline topics skeleton">
         <p>&copy; 2025 fonseware. all rights reserved.</p>
         <p style="font-size: 15px;">site hosted on <a href="https://pages.github.com/">GitHub Pages</a> and<a
                 href="https://github.com/fonseware/fallback"> open
