@@ -123,7 +123,7 @@ a:hover {
 
 @font-face {
     font-family: "Geist-Mono";
-    src: url("../res/geistmono-variablefont_wght-webfont") format("woff2");
+    src: url("../res/geistmono-variablefont_wght-webfont.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }

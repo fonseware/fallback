@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>fonseware server status</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="res/styles.css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="res/styles.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="res/favicon.png"/>
+    <link href="res/favicon.png" rel="icon" type="image/x-icon"/>
 </head>
 <body>
 <div class="container" id="main-view">
-    <img src="res/logo.png" alt="logo" width="400px"/>
+    <img alt="logo" src="res/logo.png" width="400"/>
     <h1
             style="
           font-family: 'instrumentserif-regular';
@@ -18,38 +18,36 @@
     >
         fonseware webserver status
     </h1>
-
+    <p class="tagline">this is the status page for <a href="https://www.fonseware.com/">fonseware.com</a></p>
     <!-- Status Card -->
     <div class="card">
-        <div id="status" class="status">loading status...</div>
-        <div id="timestamp" class="timestamp"></div>
-        <p class="timestamp">status auto-refreshes every 5 seconds.</p>
-
-        go to <a href="https://www.fonseware.com/">fonseware.com</a>.
+        <div class="status" id="status">contacting server...</div>
+        <div class="timestamp" id="timestamp"></div>
+        <p class="tagline" style="margin-bottom: -5px">status auto-refreshes every 5 seconds.</p>
     </div>
 
     <!-- Past Incidents Card -->
     <div class="card">
-        <h2>📜 past downtime incidents</h2>
-        <div id="incident-list" class="incident-list"></div>
+        <h2 class="topics tagline" style="font-family: 'instrumentserif-regular';">📜 past downtime incidents</h2>
+        <div class="incident-list tagline" id="incident-list" style="margin-bottom: -5px"></div>
     </div>
 
     <div class="card">
         <p class="tagline" style="text-align: left">
-            <strong style="font-family: 'instrumentserif-regular';" class="topics">
+            <strong class="topics" style="font-family: 'instrumentserif-regular';">
                 what and why is this page here?
             </strong><br>
             my website runs on a home-hosted webserver. sometimes it goes offline for maintenance or when my computer
             needs a break.
             any unusual issues or interruptions while the server is running will be reported here.
             normal planned downtime (like updates or restarts) might not be listed.
-
         </p>
     </div>
 
-    <footer>
+    <footer class="tagline">
         &copy; 2025 fonseware. all rights reserved.
-        <br> This fallback site is hosted on github pages and is <a href="https://github.com/fonseware/fallback">open
+        <br> This fallback site is hosted on <a href="https://pages.github.com/">GitHub Pages</a> and is <a
+            href="https://github.com/fonseware/fallback">open
         source</a>, but does not accept any pull requests.
     </footer>
 </div>
@@ -57,7 +55,7 @@
 <!-- Rendered Markdown View -->
 <div class="container" id="incident-view" style="display: none">
     <button class="incident-button" onclick="goBack()">&larr; back</button>
-    <div id="incident-content" class="incident-content"></div>
+    <div class="incident-content" id="incident-content"></div>
 </div>
 
 <script>
@@ -77,18 +75,18 @@
             const now = new Date().toLocaleTimeString();
 
             if (text.trim().toLowerCase() === "pong") {
-                statusEl.textContent = "🟢 fonseware.com is online";
+                statusEl.textContent = "🟢 all systems operational";
                 statusEl.style.color = "green";
             } else {
                 statusEl.textContent =
-                    "🔴 fonseware.com is unreachable (unexpected response)";
-                statusEl.style.color = "red";
+                    "🟠 partial outage (unexpected response)";
+                statusEl.style.color = "orange";
             }
 
             timestampEl.textContent = `last checked at: ${now}`;
         } catch (err) {
             const now = new Date().toLocaleTimeString();
-            statusEl.textContent = "🔴 fonseware.com is offline (cannot connect)";
+            statusEl.textContent = "🔴 major outage (cannot connect)";
             statusEl.style.color = "red";
             timestampEl.textContent = `last checked at: ${now}`;
         }
