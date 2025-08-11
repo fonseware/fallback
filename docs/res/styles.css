@@ -46,7 +46,7 @@ h1 {
 }
 
 footer {
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    font-size: clamp(1rem, 3vw, 1.2rem);
     color: #ffffff;
     margin-top: 20px;
 }
