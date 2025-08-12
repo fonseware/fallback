@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const delay = Math.random() * (1000 - 500) + 500;
+                const delay = Math.random() * (3500 - 1500) + 500;
                 setTimeout(() => {
                     entry.target.classList.remove('skeleton');
                     observer.unobserve(entry.target);
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.parentElement.classList.add('loaded-wrapper');
                     img.parentElement.classList.remove('skeleton');
                 }
-            }, 5000);
+            }, 10000);
         }
     });
 });
