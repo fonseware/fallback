@@ -26,7 +26,7 @@ const services = [
   {
     id: "live",
     name: "Live",
-    url: "https://live.fonseware.com/hls/stream01.txt",
+    url: "https://live.fonseware.com/hls/ping.txt",
   },
 ];
 
