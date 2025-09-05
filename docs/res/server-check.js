@@ -28,6 +28,16 @@ const services = [
     name: "Live",
     url: "https://live.fonseware.com/hls/ping.txt",
   },
+  {
+    id: "vod",
+    name: "VOD",
+    url: "https://vod.fonseware.com/ping.txt",
+  },
+  {
+    id: "downloads",
+    name: "Downloads",
+    url: "https://downloads.fonseware.com/ping.txt",
+  },
 ];
 
 const overallStatusEl = document.getElementById("overall-status");
