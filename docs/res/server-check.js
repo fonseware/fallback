@@ -38,6 +38,11 @@ const services = [
     name: "Downloads",
     url: "https://downloads.fonseware.com/ping.txt",
   },
+  {
+    id: "git",
+    name: "Git",
+    url: "https://git.fonseware.com/ping.txt",
+  },
 ];
 
 const overallStatusEl = document.getElementById("overall-status");
