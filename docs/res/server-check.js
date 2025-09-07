@@ -43,6 +43,16 @@ const services = [
     name: "Git",
     url: "https://git.fonseware.com/ping.txt",
   },
+   {
+    id: "auth",
+    name: "Fonseware Accounts Authenticator",
+    url: "https://git.fonseware.com/ping.txt",
+  },
+   {
+    id: "account",
+    name: "Fonseware Accounts",
+    url: "https://git.fonseware.com/ping.txt",
+  },
 ];
 
 const overallStatusEl = document.getElementById("overall-status");
