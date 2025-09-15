@@ -11,48 +11,7 @@ const services = [
     name: "Main Website",
     url: "https://www.fonseware.com/ping.txt",
   },
-  {
-    id: "assets",
-    name: "Assets",
-    url: "https://assets.fonseware.com/ping.txt",
-  },
   { id: "forum", name: "Forum", url: "https://forum.fonseware.com/ping.txt" },
-  { id: "media", name: "Media", url: "https://media.fonseware.com/ping.txt" },
-  {
-    id: "storage",
-    name: "Storage",
-    url: "https://storage.fonseware.com/ping.txt",
-  },
-  {
-    id: "live",
-    name: "Live",
-    url: "https://live.fonseware.com/hls/ping.txt",
-  },
-  {
-    id: "vod",
-    name: "VOD",
-    url: "https://vod.fonseware.com/ping.txt",
-  },
-  {
-    id: "downloads",
-    name: "Downloads",
-    url: "https://downloads.fonseware.com/ping.txt",
-  },
-  {
-    id: "git",
-    name: "Git",
-    url: "https://git.fonseware.com/ping.txt",
-  },
-   {
-    id: "auth",
-    name: "Fonseware Accounts Authenticator",
-    url: "https://git.fonseware.com/ping.txt",
-  },
-   {
-    id: "account",
-    name: "Fonseware Accounts",
-    url: "https://git.fonseware.com/ping.txt",
-  },
 ];
 
 const overallStatusEl = document.getElementById("overall-status");
