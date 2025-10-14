@@ -1,59 +1,109 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>fonseware is offline rn.</title>
+    <title>site is offline rn.</title>
     <link rel="stylesheet" href="res/styles.css"/>
     <link rel="icon" type="image/x-icon" href="res/favicon.png">
 </head>
 <body>
 <div class="container" id="main-view">
     <a href="https://www.fonseware.com/">
-    <div class="img-wrapper skeleton">  <!-- Add skeleton here too, for consistency -->
-        <img alt="logo" src="res/logo.png" loading="lazy" />
-    </div>
+        <div class="img-wrapper skeleton">
+            <img alt="logo" src="res/logo.png" loading="lazy"/>
+        </div>
     </a>
-    <h1 class="skeleton" style="font-family: 'InstrumentSerif-Italic',serif;">fonseware is offline rn.</h1>
-    <p class="tagline topics skeleton">
+
+    <h1 id="offline-title" class="skeleton" style="font-family: 'InstrumentSerif-Italic', serif;">
+        fonseware is offline rn.
+    </h1>
+
+    <p id="offline-subtitle" class="tagline topics skeleton">
         i might be doing updates or sleeping lol. come back at another time and i am very sorry for the
-        inconvenience caused.</p>
+        inconvenience caused.
+    </p>
+
     <div class="card skeleton">
-        <p class="tagline" style="text-align: left; margin-bottom: -5px"><strong
-                style="font-family: 'InstrumentSerif-Regular',serif;" class="topics"> why am
-            i seeing this error?</strong><br> my website runs on a home-hosted webserver. sometimes it goes offline for
-            maintenance or when my computer needs a break.<br><br> you can also check my <a
-                    href="https://www.fonseware.com/status/">server status here</a>.
+        <p class="tagline" style="text-align: left; margin-bottom: -5px">
+            <strong style="font-family: 'InstrumentSerif-Regular',serif;" class="topics">why am i seeing this error?</strong>
+            <br> my website runs on a home-hosted webserver. sometimes it goes offline for
+            maintenance or when my computer needs a break.
+            <br><br>
+            you can also check my <a href="https://www.fonseware.com/status/">server status here</a>.
         </p>
     </div>
+
+    <button id="retry-button" class="incident-button" style="display: none;">Try Again</button>
+
     <footer class="tagline topics skeleton">&copy; 2025 fonseware. all rights reserved.</footer>
 </div>
-<script src="res/server-check.js"></script>
+
 <script src="res/lazyload.js"></script>
 <script>
-// Function to check the ping endpoint and redirect if available
-async function checkPingAndRedirect() {
-    try {
-        const response = await fetch('https://www.fonseware.com/ping.txt', {
-            cache: 'no-store',
-            method: 'GET'
-        });
-        
-        if (response.ok) {
-            const text = await response.text();
-            if (text.trim().toLowerCase() === 'pong') {
-                window.location.href = 'https://www.fonseware.com';
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Extract "url" parameter from query string ---
+        const params = new URLSearchParams(window.location.search);
+        const offlineUrl = params.get('url');
+
+        if (offlineUrl) {
+            try {
+                const parsedUrl = new URL(offlineUrl);
+                const subdomain = parsedUrl.hostname.split('.')[0] !== 'fonseware' ? parsedUrl.hostname : 'main site';
+
+                // Update page title and text
+                document.title = `${subdomain} is offline rn.`;
+                document.getElementById('offline-title').textContent = `${subdomain} is offline rn.`;
+                document.getElementById('offline-subtitle').textContent = `${offlineUrl} is unreachable at the moment. Please try again later.`;
+
+                // Enable retry button
+                const retryButton = document.getElementById('retry-button');
+                retryButton.style.display = 'block';
+                retryButton.addEventListener('click', () => {
+                    window.location.href = offlineUrl;
+                });
+            } catch (err) {
+                console.error('Invalid URL parameter:', err);
             }
         }
-    } catch (error) {
-        // Silently fail - the site is still offline
-        console.log('Site still offline, will check again in 5 seconds');
-    }
-}
 
-// Check immediately and then every 5 seconds
-checkPingAndRedirect();
-setInterval(checkPingAndRedirect, 5000);
+        // --- Skeleton loader reveal logic ---
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = Math.random() * (3500 - 1500) + 500;
+                    setTimeout(() => {
+                        entry.target.classList.remove('skeleton');
+                        observer.unobserve(entry.target);
+                    }, delay);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.skeleton').forEach(el => observer.observe(el));
+
+        // --- Handle lazy image loading ---
+        document.querySelectorAll('.img-wrapper img').forEach(img => {
+            if (img.complete && img.naturalWidth !== 0) {
+                img.classList.add('loaded');
+                img.parentElement.classList.add('loaded-wrapper');
+                img.parentElement.classList.remove('skeleton');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                    img.parentElement.classList.add('loaded-wrapper');
+                    img.parentElement.classList.remove('skeleton');
+                });
+                setTimeout(() => {
+                    if (!img.classList.contains('loaded')) {
+                        img.classList.add('loaded');
+                        img.parentElement.classList.add('loaded-wrapper');
+                        img.parentElement.classList.remove('skeleton');
+                    }
+                }, 10000);
+            }
+        });
+    });
 </script>
 </body>
 </html>
