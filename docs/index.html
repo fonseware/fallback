@@ -33,6 +33,20 @@
                 transform: translateY(-50%) rotate(360deg);
             }
         }
+
+        /* Responsive Status Badge Styles */
+        #status-badge {
+            width: 20px;  /* Mobile size */
+            height: 20px;
+            vertical-align: top;
+        }
+
+        @media (min-width: 768px) { /* Desktop breakpoint */
+            #status-badge {
+                width: 25px; /* Desktop size */
+                height: 25px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -59,7 +73,7 @@
         <p class="tagline" style="text-align: left; margin-bottom: -5px">
             <strong style="font-family: 'InstrumentSerif-Regular',serif;" class="topics">why am i seeing this error?</strong>
             <br>my website runs on a home-hosted webserver. sometimes it goes offline for maintenance or when my computer needs a break. i’m actively investing in solutions to maintain 99% server uptime and keep things running smoothly.
-            <br><br> you can also check my <a href="https://www.fonseware.com/status/">server status here</a>. (total server status <img id="status-badge" src="https://status.fonseware.com/badge/_/dot?animate=ping" alt="Uptime badge" style="vertical-align: top;" width="25" height="25">)
+            <br><br> you can also check my <a href="https://www.fonseware.com/status/">server status here</a>. (total server status <img id="status-badge" src="https://status.fonseware.com/badge/_/dot?animate=ping" alt="Uptime badge">)
         </p>
     </div>
 
