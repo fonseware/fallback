@@ -53,15 +53,13 @@
     </p>
 
     <!-- 🆕 moved here, with skeleton -->
-    <button id="retry-button" class="incident-button skeleton" style="display: none;">Try Again</button>
+    <button id="retry-button" class="incident-button skeleton" style="display: none;">yeah, try again</button>
 
     <div class="card skeleton">
         <p class="tagline" style="text-align: left; margin-bottom: -5px">
             <strong style="font-family: 'InstrumentSerif-Regular',serif;" class="topics">why am i seeing this error?</strong>
-            <br> my website runs on a home-hosted webserver. sometimes it goes offline for
-            maintenance or when my computer needs a break.
-            <br><br>
-            you can also check my <a href="https://www.fonseware.com/status/">server status here</a>.
+            <br>my website runs on a home-hosted webserver. sometimes it goes offline for maintenance or when my computer needs a break. any unusual issues or interruptions while the server is running will be reported here. normal planned downtime (like updates or restarts) might not be listed. i’m actively investing in solutions to maintain 99% server uptime and keep things running smoothly.
+            <br><br> you can also check my <a href="https://www.fonseware.com/status/">server status here</a>. (total server status <img id="status-badge" src="https://status.fonseware.com/badge/_/dot?animate=ping" alt="Uptime badge" style="vertical-align: top;" width="25" height="25">)
         </p>
     </div>
 
@@ -78,19 +76,19 @@
         if (offlineUrl) {
             try {
                 const parsedUrl = new URL(offlineUrl);
-                const subdomain = parsedUrl.hostname.split('.')[0] !== 'fonseware' ? parsedUrl.hostname : 'main site';
+                const subdomain = parsedUrl.hostname.split('.')[0] !== 'fonseware' ? parsedUrl.hostname : 'fonseware.com';
 
                 // Update title and subtitle text dynamically
                 document.title = `${subdomain} is offline rn.`;
                 document.getElementById('offline-title').textContent = `${subdomain} is offline rn.`;
-                document.getElementById('offline-subtitle').textContent = `${offlineUrl} is unreachable at the moment. Please try again later.`;
+                document.getElementById('offline-subtitle').textContent = `looks like the url, "${offlineUrl}" is unreachable at the moment. please try again later. but would you want to retry again?`;
 
                 // Show retry button
                 const retryButton = document.getElementById('retry-button');
                 retryButton.style.display = 'block';
                 retryButton.addEventListener('click', () => {
                     retryButton.classList.add('loading');
-                    retryButton.textContent = 'Trying...';
+                    retryButton.textContent = 'trying to go to the destination again...';
                     setTimeout(() => {
                         window.location.href = offlineUrl;
                     }, 800);
@@ -136,6 +134,14 @@
                 }, 10000);
             }
         });
+
+        // --- 🟥 Check if the status page is down ---
+        const statusBadge = document.getElementById('status-badge');
+        if (statusBadge) {
+            statusBadge.addEventListener('error', () => {
+                statusBadge.replaceWith('🔴');
+            });
+        }
     });
 </script>
 </body>
