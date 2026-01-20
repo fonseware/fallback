@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Unavailable</title>
+    <title>service unavailable</title>
     <style>
         * {
             box-sizing: border-box;
@@ -23,6 +23,7 @@
         }
         .content {
             max-width: 500px;
+            width: 100%; /* Ensures it fits on small mobile screens */
         }
         h1 {
             font-size: 3rem;
@@ -60,19 +61,33 @@
             font-size: 0.75rem;
             color: #555;
         }
+
+        /* Mobile Compatibility Tweaks */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem; /* Smaller heading for phones */
+            }
+            .icon {
+                font-size: 3rem; /* Smaller icon for phones */
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="content">
-        <div class="icon">&#9888;</div> <h1>System Offline</h1>
-        <p>The server is currently unavailable due to scheduled maintenance or an unexpected error. Please check back shortly.</p>
+        <div class="icon">&#9888;</div> 
+        <h1>whoops.</h1>
+        <p>the electrons have gone on strike. we are currently bribing them with voltage to get back to work.</p>
         
-        <a href="http://fnswe.me/" class="retry-btn">Try Again</a>
+        <a href="http://fnswe.me/" class="retry-btn">try again (fingers crossed)</a>
     </div>
 
     <footer>
-        &copy; <script>document.write(new Date().getFullYear())</script> System Status
+        &copy; <script>document.write(new Date().getFullYear())</script> fonseware systems
     </footer>
 
 </body>
