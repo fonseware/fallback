@@ -1,162 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>site is offline rn.</title>
-    <link rel="stylesheet" href="res/styles.css"/>
-    <link rel="icon" type="image/x-icon" href="res/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallback Repo Index</title>
     <style>
-        /* Subtle spinner for the retry button */
-        .loading {
-            position: relative;
-            pointer-events: none;
-            opacity: 0.8;
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-
-        .loading::after {
-            content: "";
-            position: absolute;
-            right: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            border: 2px solid #fff;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
         }
-
-        @keyframes spin {
-            to {
-                transform: translateY(-50%) rotate(360deg);
-            }
+        h1 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
-
-        /* Responsive Status Badge Styles */
-        #status-badge {
-            width: 20px;  /* Mobile size */
-            height: 20px;
-            vertical-align: top;
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-
-        @media (min-width: 768px) { /* Desktop breakpoint */
-            #status-badge {
-                width: 25px; /* Desktop size */
-                height: 25px;
-            }
+        .file-list {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .status-badge {
+            display: inline-block;
+            background: #e0e0e0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #555;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-<div class="container" id="main-view">
-    <a href="https://www.fonseware.com/">
-        <div class="img-wrapper skeleton">
-            <img alt="logo" src="res/logo.png" loading="lazy"/>
+
+    <div class="container">
+        <h1>Fallback Repository <span class="status-badge">System</span></h1>
+        <p>This repository is designed to host static fallback pages used by the main site's load balancer or web server (e.g., Nginx) when the upstream server is unavailable.</p>
+        
+        <div class="file-list">
+            <strong>Available Fallback Pages:</strong>
+            <ul>
+                <li><a href="offline.html">offline.html</a> - Standard "Site Offline" / 503 display.</li>
+            </ul>
         </div>
-    </a>
-
-    <h1 id="offline-title" class="skeleton" style="font-family: 'InstrumentSerif-Italic', serif;">
-        fonseware is offline rn.
-    </h1>
-
-    <p id="offline-subtitle" class="tagline topics skeleton">
-        i might be doing updates or sleeping lol. come back at another time and i am very sorry for the
-        inconvenience caused.
-    </p>
-
-    <!-- 🆕 moved here, with skeleton -->
-    <button id="retry-button" class="incident-button skeleton" style="display: none;">yeah, try again</button>
-
-    <div class="card skeleton">
-        <p class="tagline" style="text-align: left; margin-bottom: -5px">
-            <strong style="font-family: 'InstrumentSerif-Regular',serif;" class="topics">why am i seeing this error?</strong>
-            <br>my website runs on a home-hosted webserver. sometimes it goes offline for maintenance or when my computer needs a break. i’m actively investing in solutions to maintain 99% server uptime and keep things running smoothly.
-            <br><br> you can also check my <a href="https://www.fonseware.com/status/">server status here</a>. (total server status <img id="status-badge" src="https://status.fonseware.com/badge/_/dot?animate=ping" alt="Uptime badge">)
-        </p>
     </div>
 
-    <footer class="tagline topics skeleton">&copy; 2025 fonseware. all rights reserved.</footer>
-</div>
-
-<script src="res/lazyload.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- Extract "url" parameter from query string ---
-        const params = new URLSearchParams(window.location.search);
-        const offlineUrl = params.get('url');
-
-        if (offlineUrl) {
-            try {
-                const parsedUrl = new URL(offlineUrl);
-                const subdomain = parsedUrl.hostname.split('.')[0] !== 'fonseware' ? parsedUrl.hostname : 'fonseware.com';
-
-                // Update title and subtitle text dynamically
-                document.title = `${subdomain} is offline rn.`;
-                document.getElementById('offline-title').textContent = `${subdomain} is offline rn.`;
-                document.getElementById('offline-subtitle').textContent = `looks like the url, "${offlineUrl}" is unreachable at the moment. please try again later. but would you want to retry again?`;
-
-                // Show retry button
-                const retryButton = document.getElementById('retry-button');
-                retryButton.style.display = 'block';
-                retryButton.addEventListener('click', () => {
-                    retryButton.classList.add('loading');
-                    retryButton.textContent = 'ok wait a sec...';
-                    setTimeout(() => {
-                        window.location.href = offlineUrl;
-                    }, 800);
-                });
-            } catch (err) {
-                console.error('Invalid URL parameter:', err);
-            }
-        }
-
-        // --- Skeleton loader reveal logic ---
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const delay = Math.random() * (3500 - 1500) + 500;
-                    setTimeout(() => {
-                        entry.target.classList.remove('skeleton');
-                        observer.unobserve(entry.target);
-                    }, delay);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.skeleton').forEach(el => observer.observe(el));
-
-        // --- Handle lazy image loading ---
-        document.querySelectorAll('.img-wrapper img').forEach(img => {
-            if (img.complete && img.naturalWidth !== 0) {
-                img.classList.add('loaded');
-                img.parentElement.classList.add('loaded-wrapper');
-                img.parentElement.classList.remove('skeleton');
-            } else {
-                img.addEventListener('load', () => {
-                    img.classList.add('loaded');
-                    img.parentElement.classList.add('loaded-wrapper');
-                    img.parentElement.classList.remove('skeleton');
-                });
-                setTimeout(() => {
-                    if (!img.classList.contains('loaded')) {
-                        img.classList.add('loaded');
-                        img.parentElement.classList.add('loaded-wrapper');
-                        img.parentElement.classList.remove('skeleton');
-                    }
-                }, 10000);
-            }
-        });
-
-        // --- 🟥 Check if the status page is down ---
-        const statusBadge = document.getElementById('status-badge');
-        if (statusBadge) {
-            statusBadge.addEventListener('error', () => {
-                statusBadge.replaceWith('🔴');
-            });
-        }
-    });
-</script>
 </body>
 </html>
